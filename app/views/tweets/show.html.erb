@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+
+<h1><%= @tweet.content %></h1>
+<h4>Tweeted by <%= @tweet.user %> </h4>
+<% if @tweet.user.avatar_url != nil %>
+    <p><%= link_to(image_tag(@tweet.user.avatar_url)) %></p>
+<% end %>
+<p><%= time_ago_in_words(@tweet.created_at) %> ago</p>
+
+<p> Likes de: 
+  <% @tweet.likes.each do |like| %>
+  <%= link_to(image_tag(like.user.avatar_url)) %>
+  <% end %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tweet.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_tweet_path(@tweet) %> |
+<%= link_to 'Back', tweets_path %>
