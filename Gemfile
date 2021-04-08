@@ -6,6 +6,7 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'faker', '~> 2.17'
 gem 'activeadmin', '~> 2.9'
+gem 'ransack', '~> 2.4', '>= 2.4.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.5'
 # Use postgresql as the database for Active Record

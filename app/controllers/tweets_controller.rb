@@ -3,11 +3,36 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, except: :indexç
   before_action :authenticate_user!, only: [:new]
   # GET /tweets or /tweets.json
+  #def index
+ #   @tweets = Tweet.order(created_at: 'desc').page(params[:page]).per(50)
+  #  @tweet = Tweet.new
+  #end
+
   def index
-    @tweets = Tweet.order(created_at: 'desc').page(params[:page]).per(50)
-    @tweet = Tweet.new
+
+    
+    if current_user.present?
+      
+      @q = Tweet.order('created_at DESC').page(params[:page]).ransack(params[:q])
+      @tweets = @q.result(distinct: true)
+      #@q = Tweet.where( :user_id => current_user.followers).ransack(params[:q])
+      #@tweets = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(50)
+      @tweet = Tweet.new
+      @like = Like.new
+      @followers = Follow.all
+    else 
+      @q = Tweet.ransack(params[:q])
+      @tweets = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(50)
+      @tweet = Tweet.new
+      @like = Like.new
+      @followers = Follow.all
+    end
+
+
+
   end
 
+  
   def like
     if current_user
       @tweet = Tweet.find(params[:tweet_id])
@@ -44,6 +69,14 @@ class TweetsController < ApplicationController
   # GET /tweets/1/edit
   def edit
   end
+
+  def hashtags
+    tag = Tag.find_by(name: params[:name])
+    @tweets = tag.tweets    
+  end
+
+  
+
 
   # POST /tweets or /tweets.json
   def create

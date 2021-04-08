@@ -6,8 +6,9 @@ Rails.application.routes.draw do
     post 'retweet', to:"tweets#retweet"
   end
   devise_for :users
-  root to:"tweets#index"
+  root to:'tweets#index'
 
+  get '/tweets/hashtag/:name', to:'tweets#hashtags'
   get 'home/profile', to: 'home#profile'
   get 'home/tweets', to: 'home#tweets'
   post 'home/:id/follow', to: "home#follow", as: "follow_user"
