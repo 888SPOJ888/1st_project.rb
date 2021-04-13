@@ -32,6 +32,6 @@ class Tweet < ApplicationRecord
     end
   end
   
-
-scope :tweets_for_me, ->(followings) { where user_id: followings }
+  scope :date_between, -> (start, finish) { where('created_at >= ? AND created_at <=?', start, finish) } 
+  scope :tweets_for_me, ->(followers) { where user_id: followers }
 end

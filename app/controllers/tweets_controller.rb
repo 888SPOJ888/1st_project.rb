@@ -1,12 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, except: :indexç
+  before_action :authenticate_user!, except: :index
   before_action :authenticate_user!, only: [:new]
-  # GET /tweets or /tweets.json
-  #def index
- #   @tweets = Tweet.order(created_at: 'desc').page(params[:page]).per(50)
-  #  @tweet = Tweet.new
-  #end
 
   def index
 
@@ -15,8 +10,6 @@ class TweetsController < ApplicationController
       
       @q = Tweet.order('created_at DESC').page(params[:page]).ransack(params[:q])
       @tweets = @q.result(distinct: true)
-      #@q = Tweet.where( :user_id => current_user.followers).ransack(params[:q])
-      #@tweets = @q.result(distinct: true).order('created_at DESC').page(params[:page]).per(50)
       @tweet = Tweet.new
       @like = Like.new
       @followers = Follow.all
@@ -59,6 +52,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/1 or /tweets/1.json
   def show
+   
   end
 
   # GET /tweets/new
