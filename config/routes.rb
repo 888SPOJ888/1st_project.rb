@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   
   get '/api/news' => 'api#news'
-  get '/api/:fecha1/:fecha2' => 'api#tweet_filter'
+  get '/api/:fecha1/:fecha2' => 'api#date_between'
   post '/api', action: :create, controller: 'api'
   
   

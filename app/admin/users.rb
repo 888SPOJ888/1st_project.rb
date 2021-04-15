@@ -19,6 +19,9 @@ ActiveAdmin.register User do
       columns user.retweet_count
     end
 
+    
+
+
     #column :Retweet_count do |user|
      # columns user.tweets.pluck(:user_id).compact!.count
     #end

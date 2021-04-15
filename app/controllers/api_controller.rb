@@ -41,7 +41,7 @@ class ApiController < ApplicationController
     end
     
     def date_between
-      fecha1 = Date.parse(params[:fecha1])    
+        fecha1 = Date.parse(params[:fecha1])    
         fecha2 = Date.parse(params[:fecha2])        
         
         @tweets = Tweet.where(created_at:fecha1..fecha2)
@@ -50,7 +50,7 @@ class ApiController < ApplicationController
     end
 
     respond_to do |format|
-        format.html { render "api/news", :layout => false }
+        format.html { render "api/new", :layout => false }
     end
     
     def create
