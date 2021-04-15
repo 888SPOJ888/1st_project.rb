@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post 'home/:id/follow', to: "home#follow", as: "follow_user"
   delete 'home/:id/unfollow', to: "home#unfollow", as: "unfollow_user"
   
+  
   get '/api/news' => 'api#news'
   get '/api/:fecha1/:fecha2' => 'api#tweet_filter'
   post '/api', action: :create, controller: 'api'
